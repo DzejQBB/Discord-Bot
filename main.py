@@ -60,8 +60,10 @@ async def on_ready():
     pool = await create_pool()
     print("DB pool ready ✅")
 
+@bot.tree.command(name="Hi", description="Mlem")
+async def sayHello(interaction: discord.Interaction) :
+    await interaction.response.send_message("Hi there")
 
-# ---------- Bot trigger ----------
 
 @bot.event
 async def on_message(message: discord.Message):
