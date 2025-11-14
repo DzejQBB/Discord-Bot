@@ -29,6 +29,8 @@ DB_PASS = os.getenv("DB_PASS")
 DB_SSL = os.getenv("DB_SSL", "0") == "1"
 DB_SSL_CA = os.getenv("DB_SSL_CA")  # volitelná cesta k CA .pem
 
+GUILD_ID = discord.Object(id=str(os.getenv("GUILD_ID")))
+
 # Intents – pro čtení zpráv musí být message_content = True
 intents = discord.Intents.default()
 intents.message_content = True
@@ -60,7 +62,7 @@ async def on_ready():
     pool = await create_pool()
     print("DB pool ready ✅")
 
-@bot.tree.command(name="Hi", description="Mlem")
+@bot.tree.command(name="hi", description="Mlem", guild=GUILD_ID)
 async def sayHello(interaction: discord.Interaction) :
     await interaction.response.send_message("Hi there")
 
